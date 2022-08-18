@@ -25,6 +25,7 @@ export function digmaAttributes(rootPath: string, digmaEnvironment?: string, com
   if (pkg) {
     const packagePath = require('path').dirname(pkg.__path);
     attributes[SemanticResourceDigmaAttributes.PACKAGE_PATH] = packagePath;
+    attributes[SemanticResourceDigmaAttributes.PACKAGE_NAME] = pkg.name!; // pkg.name is mandatory for the instrumentation to function correctly
   } else {
     diag.debug('package detector failed: Unable to find package path.');
   }
