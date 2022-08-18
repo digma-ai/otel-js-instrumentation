@@ -5,7 +5,17 @@ import { diag } from '@opentelemetry/api';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { SemanticResourceDigmaAttributes } from './semanticResourceDigmaAttributes';
 
-export function digmaAttributes(rootPath: string, digmaEnvironment?: string, commitId?: string) {
+type DigmaAttributesOptions = {
+  rootPath: string
+  digmaEnvironment?: string
+  commitId?: string
+}
+
+export function digmaAttributes({
+  rootPath,
+  digmaEnvironment,
+  commitId,
+}: DigmaAttributesOptions) {
   const attributes: Record<string, string> = {};
 
   const hostname = os.hostname();
