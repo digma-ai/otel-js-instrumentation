@@ -5,7 +5,7 @@ import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 import os from 'os';
 import finder from 'find-package-json';
 
-export function digmaAttributes(digmaEnvironment?: string, commitId?: string) {
+export function digmaAttributes(rootPath: string, digmaEnvironment?: string, commitId?: string) {
   const attributes: Record<string, string> = {};
 
   const hostname = os.hostname();
@@ -20,7 +20,7 @@ export function digmaAttributes(digmaEnvironment?: string, commitId?: string) {
     attributes[SemanticResourceDigmaAttributes.COMMIT_ID] = commitId;
   }
 
-  const f = finder(__dirname);
+  const f = finder(rootPath);
   const pkg = f.next().value;
   if (pkg) {
     const packagePath = require('path').dirname(pkg.__path);
