@@ -3,6 +3,7 @@ import { diag } from '@opentelemetry/api';
 
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import os from 'os';
+import { dirname } from 'path';
 import finder from 'find-package-json';
 
 export function digmaAttributes(rootPath: string, digmaEnvironment?: string, commitId?: string) {
@@ -23,7 +24,7 @@ export function digmaAttributes(rootPath: string, digmaEnvironment?: string, com
   const f = finder(rootPath);
   const pkg = f.next().value;
   if (pkg) {
-    const packagePath = require('path').dirname(pkg.__path);
+    const packagePath = dirname(pkg.__path);
     attributes[SemanticResourceDigmaAttributes.PACKAGE_PATH] = packagePath;
     attributes[SemanticResourceDigmaAttributes.PACKAGE_NAME] = pkg.name!; // pkg.name is mandatory for the instrumentation to function correctly
   } else {
