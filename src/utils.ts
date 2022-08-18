@@ -1,10 +1,9 @@
-import { SemanticResourceDigmaAttributes } from './semanticResourceDigmaAttributes';
-import { diag } from '@opentelemetry/api';
-
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import os from 'os';
 import { dirname } from 'path';
 import finder from 'find-package-json';
+import { diag } from '@opentelemetry/api';
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { SemanticResourceDigmaAttributes } from './semanticResourceDigmaAttributes';
 
 export function digmaAttributes(rootPath: string, digmaEnvironment?: string, commitId?: string) {
   const attributes: Record<string, string> = {};
