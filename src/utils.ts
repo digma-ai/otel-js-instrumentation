@@ -41,4 +41,4 @@ export function digmaAttributes({
   }
 
   return attributes;
-}
+} 
