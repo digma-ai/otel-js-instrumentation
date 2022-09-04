@@ -9,14 +9,20 @@ type DigmaAttributesOptions = {
   rootPath: string
   digmaEnvironment?: string
   commitId?: string
+  otherPackages: string[]
 }
+
+type AttributeValue = string | string[]
+
+type Attributes = Record<string, AttributeValue>
 
 export function digmaAttributes({
   rootPath,
   digmaEnvironment,
   commitId,
+  otherPackages,
 }: DigmaAttributesOptions) {
-  const attributes: Record<string, string> = {};
+  const attributes: Attributes = {};
 
   const hostname = os.hostname();
   if (digmaEnvironment === undefined) {
@@ -28,6 +34,10 @@ export function digmaAttributes({
 
   if (commitId) {
     attributes[SemanticResourceDigmaAttributes.COMMIT_ID] = commitId;
+  }
+
+  if(otherPackages?.length > 0) {
+    attributes[SemanticResourceDigmaAttributes.PACKAGE_OTHERS] = otherPackages;
   }
 
   const f = finder(rootPath);
