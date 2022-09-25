@@ -48,7 +48,7 @@ Digma can also generate specifc insights based on the service framework you're u
 
 Follow the steps in the below links to add Digma's middlware, based on your server framework:
 
-* [github.com/digma-ai/digma-instrumentation-express] 
+* https://github.com/digma-ai/digma-instrumentation-express 
 
 For example, here  is how you would use Digma's middlware with [Express](https://www.npmjs.com/package/@opentelemetry/instrumentation-express) along with the standard OTEL middlware:
 
