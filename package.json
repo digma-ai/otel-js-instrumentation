@@ -12,8 +12,11 @@
     "prepare": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "digma.ai",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/find-package-json": "^1.2.3",
     "@types/node": "^18.7.3",
