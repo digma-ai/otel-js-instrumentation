@@ -5,3 +5,5 @@ on:
 jobs:
   publish-npm-package:
     uses: digma-ai/github-workflows/.github/workflows/publish-npm-package.yml@main
+    with:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
