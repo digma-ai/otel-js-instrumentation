@@ -1,21 +1,20 @@
-# Opentelemetry JS Instrumentation Digma
+# OpenTelemetry JS Instrumentation Digma
 
-This package provides instrumentation to make it easy to set up Digma to work along with your OpenTelemetry instrumentation.
+[Digma](https://digma.ai/) facilitates continuous feedback by gleaning valuable insights from your code and displaying them in the IDE as you code.
 
-In order to be able to effectively glean code-object based insights for continuous feedback and map them back in the IDE, Digma inserts additional attribute into the OTEL resource attributes. 
+This [OpenTelemetry](https://opentelemetry.io/) instrumentation package for [Node.js](https://nodejs.org/en/) helps Digma analyze your code adding a number of OTEL resource attributes to the spans.
 
-## Pre-requisites
+## Prerequisites
 *  Node  `version: 8 or above.`
 
 ## Installing the module
+```sh
+npm install @digma/otel-js-instrumentation
 ```
-npm install --save @digma/otel-js-instrumentation
-```
-
 
 ## Usage
 
-### Set up
+### Setup
 - [Instrumenting your OpenTelemetry resource](#instrumenting-your-opentelemetry-resource)
 - [Adding instrumentation for specific server frameworks](#adding-instrumentation-for-specific-server-frameworks)
 - [Exporting trace data to Digma](#exporting-trace-data-to-digma)
@@ -24,15 +23,14 @@ npm install --save @digma/otel-js-instrumentation
 
 ### Instrumenting your OpenTelemetry resource
 
-Digma needs to add a few more attributes to your OTEL `Resource`. To update your OTEL setup, simply use the provided digmaAttributes function as seen below:
+Digma needs to add a few more attributes to your OTEL `Resource`. To update your OTEL setup, simply use the provided `digmaAttributes` function as seen below:
 
-``` javascript
+```js
 const { digmaAttributes } = require('@digma/otel-js-instrumentation');
-
 
 const sdk = new opentelemetry.NodeSDK({
   resource: new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: "my-service",
+    [SemanticResourceAttributes.SERVICE_NAME]: 'my-service',
     ...digmaAttributes({
       rootPath: __dirname,
     }),
