@@ -1,6 +1,6 @@
 {
   "name": "@digma/otel-js-instrumentation",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This instrumentation package for JavaScript enriches the telemtry data collected by OpenTelemetry and helps Digma provide valuable insights and continuous feedback directly in the IDE.",
   "main": "out/index.js",
   "scripts": {
