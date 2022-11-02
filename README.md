@@ -2,7 +2,7 @@
 
 [Digma](https://digma.ai/) facilitates continuous feedback by gleaning valuable insights from your code and displaying them in the IDE as you code.
 
-This [OpenTelemetry](https://opentelemetry.io/) instrumentation package for [Node.js](https://nodejs.org/en/) helps Digma analyze your code adding a number of OTEL resource attributes to the spans.
+This [OpenTelemetry](https://opentelemetry.io/) instrumentation package for [Node.js](https://nodejs.org/en/) helps Digma analyze your code by adding a number of OTEL resource attributes to the spans.
 
 ## Prerequisites
 *  Node  `version: 8 or above.`
