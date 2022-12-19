@@ -93,11 +93,20 @@ That's it! You should be good to go.
 
 ### Fine tuning and ehhancements
 
-Digma allows you to set additional attributes as a part of setting up the OpenTelemetry Resource, to allow better observability visualization for commits, deployment environments, and more. All of these are optional, but can help provide more context to the colleced traces:
+Digma allows you to set additional attributes while setting up the OpenTelemetry Resource to allow better observability visualization for commits, deployment environments, and more. All of these are optional, but can help provide more context to the collected traces:
 
 | Options | Input Type  | Attribute Key | Description | Default |
 | --- | --- | --- | --- | --- |
 | `rootPath` | `string` | [code.package.path, code.package.name]| rooPath describes the absolute path of the package.json file | None 
-| `digmaEnvironment` | `string` | digma.environment |  The Environment describes where the running process is deployed. (e.g production, staging, ci) | If no deployment environment is provided, we'll assume this is a local deployment env and mark it using the local hostname. It will be visible to that machine only.
+| `digmaEnvironment` | `string` | digma.environment |  The Environment describes where the running process is deployed. (e.g production, staging, ci) | See the note on the Digma environment below.
 | `commitId` | `string`  | scm.commit.id | The specific commit identifier of the running code. | |
 `otherPackages` | `[] string` | code.package.others | Specify additional satellite or infra packages to track | |
+
+### A note on the Digma environment
+
+To support different configurations and deployment strategies, Digma provides a few ways to set the Digma environment.
+This list describes the order of precedence:
+
+1. If set, the `DEPLOYMENT_ENV` environment variable has the highest priority and always wins.
+2. If the environment variable is not set, Digma will use the `digmaEnvironment` attribute value passed to the `digmaAttributes` function.
+3. If no deployment environment is provided, we'll assume this is a local deployment environment and mark it using the local hostname. It will be visible only to this machine.

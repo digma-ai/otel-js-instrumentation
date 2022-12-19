@@ -25,9 +25,9 @@ export function digmaAttributes({
   const attributes: Attributes = {};
 
   const hostname = os.hostname();
-  if (digmaEnvironment === undefined) {
-    digmaEnvironment = `${hostname}[local]`;
-  }
+
+  digmaEnvironment = resolveEnvironment(digmaEnvironment, hostname);
+
   attributes[SemanticResourceAttributes.HOST_NAME] = hostname;
   attributes[SemanticResourceDigmaAttributes.ENVIRONMENT] = digmaEnvironment;
   attributes[SemanticResourceAttributes.TELEMETRY_SDK_LANGUAGE] = 'JavaScript';
@@ -52,3 +52,24 @@ export function digmaAttributes({
 
   return attributes;
 } 
+
+/**
+ * This function resolves the environment in the following order of precedence:
+ * 1. The DEPLOYMENT_ENV environment variable always wins.
+ * 2. The passed digmaEnvironment attribute value comes second.
+ * 3. The [local] fallback comes last.
+ * @param digmaEnvironment The value passed to the digmaAttributes configuration
+ * @param hostname 
+ * @returns 
+ */
+function resolveEnvironment(digmaEnvironment: string | undefined, hostname: string): string {
+  if (process.env.DEPLOYMENT_ENV !== undefined) {
+    digmaEnvironment = process.env.DEPLOYMENT_ENV;
+  }
+
+  if (digmaEnvironment === undefined) {
+    digmaEnvironment = `${hostname}[local]`;
+  }
+  
+  return digmaEnvironment;
+}
